@@ -1,0 +1,22 @@
+@*
+* This template takes a single argument, form when creating a new article.
+*@
+@import datamodels.dto.ArticleDTO
+@import helper.CSRF
+
+@(articleForm: Form[ArticleDTO])
+
+@main {
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+
+                    <!-- Form - Blog Article -->
+                @helper.form(action = CSRF(routes.ArticleController.createArticle()), 'class -> "form-horizontal") {
+                    @articleGeneralForm(articleForm)
+                }
+
+            </div>
+        </div>
+    </div>
+}

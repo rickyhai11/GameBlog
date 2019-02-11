@@ -1,0 +1,39 @@
+2019-02-09 21:29:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER" not found; SQL statement:
+SELECT * from user [42102-197]
+2019-02-09 21:29:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" not found; SQL statement:
+SELECT * from users [42102-197]
+2019-02-09 21:29:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COMMENTS" not found; SQL statement:
+SELECT * from comments [42102-197]
+2019-02-09 21:29:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COMMENTS" not found; SQL statement:
+SELECT * FROM comments [42102-197]
+2019-02-09 21:30:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER_ROLE" not found; SQL statement:
+SELECT * FROM user_role [42102-197]
+2019-02-09 21:30:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER_ROLE" not found; SQL statement:
+SELECT * FROM user_role [42102-197]
+2019-02-09 21:30:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER_ROLE" not found; SQL statement:
+SELECT * FROM user_role [42102-197]
+2019-02-09 21:30:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER_ROLE" not found; SQL statement:
+SELECT * FROM user_role [42102-197]
+2019-02-09 21:30:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER_ROLE" not found; SQL statement:
+SELECT * FROM user_role [42102-197]
+2019-02-09 21:30:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER_ROLE" not found; SQL statement:
+SELECT * FROM user_role [42102-197]
+2019-02-09 21:32:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM INFORMATION_SCHEMA.TABLES INFORINFORMATION_SCHEMA.[*]TABLES MATION_SCHEMA.USERS"; SQL statement:
+SELECT * FROM INFORMATION_SCHEMA.TABLES INFORINFORMATION_SCHEMA.TABLES MATION_SCHEMA.USERS [42000-197]
+2019-02-09 21:33:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM INFORMATION_SCHEMA.COLUMNS ON_SCHEMA.[*]TABLES"; SQL statement:
+SELECT * FROM INFORMATION_SCHEMA.COLUMNS ON_SCHEMA.TABLES [42000-197]
+2019-02-09 21:33:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM INFORMATION_SCHEMA.COLUMNS ON_SCHEMA.[*]TABLES"; SQL statement:
+SELECT * FROM INFORMATION_SCHEMA.COLUMNS ON_SCHEMA.TABLES [42000-197]

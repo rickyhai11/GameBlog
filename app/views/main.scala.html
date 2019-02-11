@@ -1,23 +1,69 @@
 @*
- * This template is called from the `index` template. This template
- * handles the rendering of the page header and body tags. It takes
- * two arguments, a `String` for the title of the page and an `Html`
- * object to insert into the body of the page.
- *@
-@(title: String)(content: Html)
+* This template takes a single argument, home page
+*@
+
+@(content: Html)
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
     <head>
-        @* Here's where we render the page title `String`. *@
-        <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
-        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+        <title>Gaming Reviews </title>
+        <link href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")" rel="stylesheet" media="screen"/>
+        <script src="@routes.Assets.versioned("lib/jquery/dist/jquery.js")"></script>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")"/>
+
     </head>
     <body>
-        @* And here's where we render the `Html` object containing
-         * the page content. *@
-        @content
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                    <a class="navbar-brand" href="@routes.WebController.web(1)">
+                        <img src="@routes.Assets.versioned("images/logo.png")" >
+                        <a class="navbar-brand" href="@routes.WebController.web(1)">Home</a></a>
+                </div>
+                <div id="navbar5" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        @if(session.get("username") == null){
+                            <li class="active"><a href="@routes.UserController.register">Sign Up</a></li>
+                            <li class="active"><a href="@routes.UserController.login">Login</a></li>
+                        }
+                        @if(session.get("username") != null){
+                            <li class="active"><a href="@routes.WebController.usersWeb(session.get("username"))">
+                                My Page</a></li>
+                            <li class="active"><a href="@routes.ArticleController.getNewArticleForm()">New Review</a></li>
+                            <li class="active"><a href="@routes.UserController.logout">Sign Out</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container" >
+            <div class="row ">
+                <div class="col-md-8 col-xs-12"> @content </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                @if(session.get("username") != null) {
+                    <p class="text-center">
+                        | Logged user: @session.get("username")
+                        | <a href="@routes.UserController.logout">Sign Out</a>
+                    </p>
+                }
+                </div>
+            </div>
+
+            <script src="@routes.Assets.versioned("lib/bootstrap/js/bootstrap.js")"></script>
+
+        </div>
+
     </body>
 </html>

@@ -3,12 +3,48 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+#GET     /                           controllers.HomeController.index
 # An example controller showing how to use dependency injection
-GET     /count                      controllers.CountController.count
+#GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
-GET     /message                    controllers.AsyncController.message
+#GET     /message                    controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
+# Home page
+GET         /                     controllers.WebController.web(page: Int ?= 1)
+
+# Home page of the application, showing web articles from all users
+GET         /web                  controllers.WebController.web(page: Int ?= 1)
+# User's page, showing web articles from this users
+GET         /web/:username        controllers.WebController.usersWeb(username, page: Int ?= 1)
+
+# Present "login" page
+GET         /login                 controllers.UserController.getLoginForm
+# Submit "login" form
+POST        /login                 controllers.UserController.login
+# Logout user
+GET         /logout                controllers.UserController.logout
+# Present "registration" page
+GET         /register              controllers.UserController.getRegistrationForm
+# Create new user
+POST        /register              controllers.UserController.register
+
+# Present "create a article" page
+GET         /article/new              controllers.ArticleController.getNewArticleForm
+# Blog article page for id of :id
+GET         /article                  controllers.ArticleController.getArticle(id: Long)
+# Create new article
+POST        /article                  controllers.ArticleController.createArticle
+# Present "edit a article" page
+GET         /article/edit             controllers.ArticleController.getEditArticleForm(id: Long)
+# Update article with id of :id
+POST        /article/edit             controllers.ArticleController.editArticle(id: Long)
+# Deletes article with id of :id
+GET         /article/delete           controllers.ArticleController.deleteArticle(id: Long)
+
+# Present "leave a comment" page
+GET         /comment               controllers.CommentController.getCommentForm(articleId: Long)
+# Create new comment
+POST        /comment               controllers.CommentController.createComment(articleId: Long)

@@ -1,0 +1,6 @@
+#FileLock
+#Sat Feb 09 21:28:22 PST 2019
+hostName=192.168.0.19
+id=168d5e0bf7cd3f7d97d5b08111722596997a2030af8
+method=file
+server=192.168.0.19\:49538

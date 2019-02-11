@@ -6,7 +6,7 @@ h1 {
 }
 
 h2 {
-    color: #FF0000;
+    color: #1E90FF;
 }
 
 footer {
@@ -30,5 +30,6 @@ a:hover, a:focus, a:active {
 
 .pagination {
     display: block;
+    color: Blue;
     text-align: center;
 }

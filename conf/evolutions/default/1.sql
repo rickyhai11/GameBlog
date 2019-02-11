@@ -3,22 +3,22 @@
 
 # --- !Ups
 
-create table comment (
-  id                            bigint auto_increment not null,
-  body                          TEXT,
-  post_id                       bigint,
-  user_id                       bigint,
-  create_date                   timestamp not null,
-  constraint pk_comment primary key (id)
-);
-
-create table post (
+create table article (
   id                            bigint auto_increment not null,
   title                         varchar(255) not null,
   body                          TEXT,
   user_id                       bigint,
   create_date                   timestamp not null,
-  constraint pk_post primary key (id)
+  constraint pk_article primary key (id)
+);
+
+create table comment (
+  id                            bigint auto_increment not null,
+  body                          TEXT,
+  article_id                    bigint,
+  user_id                       bigint,
+  create_date                   timestamp not null,
+  constraint pk_comment primary key (id)
 );
 
 create table role (
@@ -47,14 +47,14 @@ create table user_role (
   constraint pk_user_role primary key (user_id,role_id)
 );
 
-alter table comment add constraint fk_comment_post_id foreign key (post_id) references post (id) on delete restrict on update restrict;
-create index ix_comment_post_id on comment (post_id);
+alter table article add constraint fk_article_user_id foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_article_user_id on article (user_id);
+
+alter table comment add constraint fk_comment_article_id foreign key (article_id) references article (id) on delete restrict on update restrict;
+create index ix_comment_article_id on comment (article_id);
 
 alter table comment add constraint fk_comment_user_id foreign key (user_id) references user (id) on delete restrict on update restrict;
 create index ix_comment_user_id on comment (user_id);
-
-alter table post add constraint fk_post_user_id foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_post_user_id on post (user_id);
 
 alter table user_role add constraint fk_user_role_user foreign key (user_id) references user (id) on delete restrict on update restrict;
 create index ix_user_role_user on user_role (user_id);
@@ -65,14 +65,14 @@ create index ix_user_role_role on user_role (role_id);
 
 # --- !Downs
 
-alter table comment drop constraint if exists fk_comment_post_id;
-drop index if exists ix_comment_post_id;
+alter table article drop constraint if exists fk_article_user_id;
+drop index if exists ix_article_user_id;
+
+alter table comment drop constraint if exists fk_comment_article_id;
+drop index if exists ix_comment_article_id;
 
 alter table comment drop constraint if exists fk_comment_user_id;
 drop index if exists ix_comment_user_id;
-
-alter table post drop constraint if exists fk_post_user_id;
-drop index if exists ix_post_user_id;
 
 alter table user_role drop constraint if exists fk_user_role_user;
 drop index if exists ix_user_role_user;
@@ -80,9 +80,9 @@ drop index if exists ix_user_role_user;
 alter table user_role drop constraint if exists fk_user_role_role;
 drop index if exists ix_user_role_role;
 
-drop table if exists comment;
+drop table if exists article;
 
-drop table if exists post;
+drop table if exists comment;
 
 drop table if exists role;
 

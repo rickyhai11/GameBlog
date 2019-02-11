@@ -1,0 +1,32 @@
+@*
+* This template takes a single argument, a list of articles to display and pagination at the end.
+*@
+@import services.PagingService
+
+@(pagingService: PagingService)
+
+@main {
+    <!-- Show List of articles -->
+    @articles(pagingService)
+
+    <!-- Pagination -->
+    <div class="pagination">
+    @if(pagingService.indexOutOfBounds) {
+        Page is out of bounds. Go back to <a href="@routes.WebController.web(1)">Home</a>.
+    } else {
+        @if(pagingService.hasPrev) {
+            <a href="@routes.WebController.web(1)">&laquo; first</a>
+            <a href="@routes.WebController.web(pagingService.getPageIndex - 1)">previous</a>
+        }
+
+        @if(pagingService.getTotalPageCount != 1) {
+            Page @pagingService.getPageIndex of @pagingService.getTotalPageCount.
+        }
+
+        @if(pagingService.hasNext) {
+            <a href="@routes.WebController.web(pagingService.getPageIndex + 1)">next</a>
+            <a href="@routes.WebController.web(pagingService.getTotalPageCount)">last &raquo;</a>
+        }
+    }
+    </div>
+}

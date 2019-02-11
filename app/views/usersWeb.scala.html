@@ -1,0 +1,30 @@
+@*
+* This template takes a single argument, this is to display all articles from an given user.
+*@
+@import datamodels.dto.UserDTO
+@import services.PagingService
+
+@(userDTO: UserDTO, pagingService: PagingService)
+
+@main {
+        <!-- Show List of articles -->
+    @articles(pagingService)
+        <!-- Pagination -->
+    <div class="pagination">
+    @if(pagingService.indexOutOfBounds) {
+        You have no reviews. Click to go back <a href="@routes.WebController.web(1)">Home</a>.
+    } else {
+        @if(pagingService.hasPrev) {
+            <a href="@routes.WebController.usersWeb(userDTO.username, 1)">&laquo; first</a>
+            <a href="@routes.WebController.usersWeb(userDTO.username, pagingService.getPageIndex - 1)">previous</a>
+        }
+        @if(pagingService.getTotalPageCount != 1) {
+            Page @pagingService.getPageIndex of @pagingService.getTotalPageCount.
+        }
+        @if(pagingService.hasNext) {
+            <a href="@routes.WebController.usersWeb(userDTO.username, pagingService.getPageIndex + 1)">next</a>
+            <a href="@routes.WebController.usersWeb(userDTO.username, pagingService.getTotalPageCount)">last &raquo;</a>
+        }
+    }
+    </div>
+}

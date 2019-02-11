@@ -1,0 +1,67 @@
+@*
+* This template takes two arguments, display an article form that could be edited only by owner (owner view)
+*@
+@import java.util.List
+@import datamodels.dto.ArticleDTO
+@import datamodels.dto.CommentDTO
+
+@(articleDTO: ArticleDTO, commentDTOs: List[CommentDTO])
+
+@main {
+    <!-- Article -->
+    <div class="jumbotron">
+
+            <!-- Article title -->
+        <h1>@articleDTO.title</h1>
+
+        <div> Created @articleDTO.createDate by
+            <a href="@routes.WebController.usersWeb(articleDTO.username)">@articleDTO.username</a>
+        </div>
+
+            <!-- Article body -->
+        <h3>@articleDTO.body</h3>
+
+            <!-- Show Update and Delete button only if User is the owner of the Article -->
+        @if(session.get("username") == articleDTO.username) {
+            <div class="row">
+
+                    <!-- Delete button -->
+                <a href="@routes.ArticleController.deleteArticle(articleDTO.id)" class="col-md-2 pull-right">
+                    <button type="button" class="btn btn-primary btn-block">Delete</button>
+                </a>
+
+                    <!-- Update button -->
+                <a href="@routes.ArticleController.editArticle(articleDTO.id)" class="col-md-2 pull-right">
+                    <button type="button" class="btn btn-primary btn-block">Edit</button>
+                </a>
+
+            </div>
+        }
+
+    </div>
+
+    <h2>Comments:</h2>
+
+        <!-- Comments -->
+    @for(commentDTO <- commentDTOs) {
+        <div class="well">
+
+            <div> Created @commentDTO.createDate by
+                <a href="@routes.WebController.usersWeb(commentDTO.username)">@commentDTO.username</a>
+            </div>
+
+                <!-- Comment body -->
+            <h3>@commentDTO.body</h3>
+
+        </div>
+    }
+
+        <!-- Show Comment button only if User is authenticated -->
+    @if(session.get("username") != null) {
+
+        <!-- Comment button -->
+    <a href="@routes.CommentController.getCommentForm(articleDTO.id)" class="col-md-2 pull-right">
+        <button type="button" class="btn btn-primary btn-block">Comment</button>
+    </a>
+}
+}

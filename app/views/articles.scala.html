@@ -1,0 +1,20 @@
+@*
+* This template takes a single argument, Display all articles ordered by date created.
+*@
+@import services.PagingService
+
+@(pagingService: PagingService)
+
+<!-- Show List of articles -->
+<div class="starter-template">
+    @for(articleDTO <- pagingService.getList) {
+        <div class="panel">
+            <div class="panel-heading">
+                <h1><a href="@routes.ArticleController.getArticle(articleDTO.id)">@articleDTO.title</a></h1>
+                <div> Created @articleDTO.createDate by <a href="@routes.WebController.usersWeb(articleDTO.username)">@articleDTO.username</a>
+                </div>
+            </div>
+            <h3 class="panel-body"> @articleDTO.body</h3>
+        </div>
+    }
+</div>
