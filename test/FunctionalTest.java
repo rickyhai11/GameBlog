@@ -1,7 +1,6 @@
 import org.junit.Test;
 import play.test.WithApplication;
 import play.twirl.api.Content;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**

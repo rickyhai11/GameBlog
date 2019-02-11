@@ -27,4 +27,5 @@ public class BrowserTest extends WithBrowser {
         assertTrue(browser.pageSource().contains("Your new application is ready."));
     }
 
+
 }

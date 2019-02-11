@@ -32,9 +32,8 @@ libraryDependencies += "org.mindrot" % "jbcrypt" % "0.3m"
 // Testing libraries for dealing with CompletionStage...
 libraryDependencies += "org.assertj" % "assertj-core" % "3.11.1" % Test
 libraryDependencies += "org.awaitility" % "awaitility" % "3.1.3" % Test
-libraryDependencies += "org.mockito" % "mockito-core" % "2.1.0" % Test
 
 // Make verbose tests
 testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))
 
-javaOptions in Test += "-Dconfig.file=conf/test.conf"
+javaOptions in Test += "-Dconfig.file=conf/application.conf"
