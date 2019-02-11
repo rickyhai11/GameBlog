@@ -1,53 +1,50 @@
-[<img src="https://img.shields.io/travis/playframework/play-java-starter-example.svg"/>](https://travis-ci.org/playframework/play-java-starter-example)
+# Game Review Website (Demonstration)
+Hundreds of video games get released every year, and there’s not enough time to play them all. This site is here to help you to know which games are worth your time.
 
-# play-java-starter-example
+# Features
+  - Game reviewers can login, view, submit, edit and delete their reviews  
+  - Readers can login and comment on reviews
+  - Guests are able to see reviews but can't comment or edit reviews
+  - Member registration
+### Language
+  - Java
+### Tech
 
-This is a starter application that shows how Play works.  Please see the documentation at https://www.playframework.com/documentation/latest/Home for more details.
+* [Play](https://www.playframework.com/) - Web Framework For Java and Scala
+* [Guice](https://github.com/google/guice) - A lightweight dependency injection framework for Java
+* [H2](http://www.h2database.com/html/main.html) - In-memory databases
+* [ Bootstrap](https://getbootstrap.com/2.3.2/index.html) - Great UI boilerplate for modern web apps
+* [jquery](https://jquery.com/) - A fast, small, and feature-rich JavaScript library
+* [JBCEncryption](https://github.com/jeremyh/jBCrypt) - An implementation the OpenBSD Blowfish password hashing algorithm
+* [JUnit](https://junit.org/junit5/) - A unit testing framework for the Java
 
-## Running
+### Build and Run Application
+JDK 8, Scala 2.12.X, SBT Plugin 1.2.8 are required to run application.
+Install the dependencies, then build and run application through your terminal
 
-Run this using [sbt](http://www.scala-sbt.org/).  If you downloaded this project from http://www.playframework.com/download then you'll find a prepackaged version of sbt in the project directory:
-
+```sh
+$ git clone https://github.com/rickyhai11/GameBlog.git
+$ cd GameBlog
+$ sbt run
 ```
-sbt run
+To run all tests, run test:
 ```
+$ sbt test
+```
+### Docker
+By default, the Docker will expose port 9000, so change this within the Dockerfile if necessary. When ready, simply use the Dockerfile to build the image.
 
-And then go to http://localhost:9000 to see the running web application.
+```sh
+$ cd GameBlog
+$ docker build -t rickyhai11/game-reviews -f Dockerfile .
+```
+This will create the web-app image and pull in the necessary dependencies. Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 9000 of the host to port 9000 of the Docker (or whatever port was exposed in the Dockerfile):
 
-## Controllers
+```sh
+$ docker run -i -p 9000:9000 rickyhai11/game-reviews
+```
+Verify the deployment by navigating to your server address in your preferred browser.
 
-There are several demonstration files available in this template.
-
-- `HomeController.java`:
-
-  Shows how to handle simple HTTP requests.
-
-- `AsyncController.java`:
-
-  Shows how to do asynchronous programming when handling a request.
-
-- `CountController.java`:
-
-  Shows how to inject a component into a controller and use the component when
-  handling requests.
-
-## Components
-
-- `Module.java`:
-
-  Shows how to use Guice to bind all the components needed by your application.
-
-- `Counter.java`:
-
-  An example of a component that contains state, in this case a simple counter.
-
-- `ApplicationTimer.java`:
-
-  An example of a component that starts when the application starts and stops
-  when the application stops.
-
-## Filters
-
-- `ExampleFilter.java`:
-
-  A simple filter that adds a header to every response.
+```sh
+[YOUR.DOCKER.HOST.IP]:9000
+```
